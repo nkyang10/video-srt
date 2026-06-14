@@ -10,7 +10,7 @@ Generated Traditional Chinese SRT subtitles.
 | Audio extraction | ffmpeg | ~90s | 16kHz mono WAV, 2h25min |
 | ASR | faster-whisper large-v3-turbo (CPU) | ~3min | 266 Japanese SRT blocks |
 | Gap fix | fix_subtitle_gaps.py | <1s | 266 blocks, 2 gaps fixed |
-| Translation | subagent (DeepSeek v4 flash) | ~80s | 266 Traditional Chinese blocks |
+| Translation + singing removal | subagent (DeepSeek v4 flash) | ~150s | 259 TC blocks → `Kalafina Anniversary LIVE 2026.zh-tw.srt` |
 
 ## Commands
 
@@ -64,4 +64,4 @@ Single subagent call with the full 266-block SRT. Prompt rules:
 2. **faster-whisper large-v3-turbo on CPU** — 276% CPU on 8-core, 2.8GB RAM, completed 2h25min in ~3min. No chunking needed.
 3. **Quality** — Japanese transcription was clean. No language hallucination artifacts. Song lyrics slightly imperfect but MC sections very accurate.
 4. **266 blocks in one subagent** — DeepSeek v4 flash handled the full translation pass without issues. Input was ~18KB SRT text.
-5. **Delivery** — SRT file delivered via MEDIA tag or email attachment
+5. **Output filename** — use `{VideoName}.{lang-code}.srt` format (e.g. `Kalafina Anniversary LIVE 2026.zh-tw.srt`), delivered alongside the source video.
